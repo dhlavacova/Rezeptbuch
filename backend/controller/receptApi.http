@@ -1,0 +1,9 @@
+POST http://localhost:3000/rezept/neu_rezept
+Content-Type: application/json
+
+
+{ "id": "",
+    "title": "pommes1",
+    "zutaten": "froste pommes",
+    "zubereitung":"baby einfach"
+}
