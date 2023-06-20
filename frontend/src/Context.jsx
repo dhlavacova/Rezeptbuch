@@ -3,7 +3,7 @@ import {createContext, useEffect, useState} from 'react';
 export const RezeptContext=createContext();
 export const Provider = ({children}) => {
     const [rezepten,setRezepten]=useState([])
-   /* const [addRezept,setAddRezept]=useState({})*/
+
     const fetchData = async ()=>{
         const data=await fetch(`http://localhost:3000/rezepten`)
         const jsonData = await data.json();
@@ -11,11 +11,7 @@ export const Provider = ({children}) => {
         setRezepten(jsonData)
         console.log('context',rezepten)
     }
-    useEffect(()=>{
 
-        fetchData();
-
-    },[])
     const deleteHandler=async (id)=>{
 const response=await fetch (`http://localhost:3000/rezepten/${id}`,
     {
@@ -24,25 +20,33 @@ const response=await fetch (`http://localhost:3000/rezepten/${id}`,
 const readableResponse=await response.text();
 fetchData();
 }
-/*
-const submitHandler=async (e,addRezept)=>{
+//......
+const submitHandler=async (e,neuRezepten)=>{
         e.preventDefault();
-setRezepten(prev=>[...prev,addRezept])
+        console.log('neurezept',neuRezepten)
+        setRezepten((prev)=>[...prev,neuRezepten])
+console.log('all rezepten',rezepten)
     const data = await fetch("http://localhost:3000/rezepten", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(addRezept),
+        body: JSON.stringify(neuRezepten),
     });
     fetchData();
-};*/
+};
+    useEffect(()=>{
 
+        fetchData();
+
+    },[])
 
     return (
-        <RezeptContext.Provider value={{rezepten,setAddRezept,deleteHandler, submitHandler}}>
+        <RezeptContext.Provider value={{rezepten,setRezepten,deleteHandler,submitHandler}}>
             {children}
         </RezeptContext.Provider>
     );
 };
+
+
 

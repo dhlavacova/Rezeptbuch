@@ -13,7 +13,7 @@ function App() {
         <Provider>
             <Main>
                 <SeznamRezepten/>
-              {/*  <AddRezept/>*/}
+                <AddRezept/>
             </Main>
         </Provider>
     );
