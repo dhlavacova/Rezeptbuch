@@ -6,8 +6,9 @@ export const getAllRezepten=async (req,res)=>{
 }
 export const newRezept= async(req,res)=>{
 let rezept = req.body;
+//console.log("rezept", rezept)
 rezept.id= uuid();
-await db.data.push(rezept);
+ await db.data.push(rezept);
     db.write()
     res.send(db.data)
 }
