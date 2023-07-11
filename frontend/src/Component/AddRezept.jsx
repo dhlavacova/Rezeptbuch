@@ -12,7 +12,7 @@ const AddRezept = () => {
         console.log('klik');
         const neuRezept = {
             title,
-            zutaten,
+            "zutaten":[zutaten],
             zubereitung
         };
 
